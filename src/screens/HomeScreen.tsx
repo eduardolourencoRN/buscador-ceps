@@ -5,8 +5,6 @@ import {
   Text,
   ActivityIndicator,
   StyleSheet,
-  Dimensions,
-  PixelRatio,
   KeyboardAvoidingView,
   Keyboard,
   TouchableOpacity,
@@ -15,7 +13,7 @@ import {
 import {fetchUserData} from '../api/api';
 import DetailsScreen from './details';
 import {StackNavigationProp} from '@react-navigation/stack';
-import Header from './components/header'
+import Header from './components/header';
 
 type RootStackParamList = {
   Home: undefined;
@@ -32,28 +30,12 @@ type ResultadoType = {
   street: string;
 };
 
-export const responsiveSize = (size: number) => {
-  const {width, height} = Dimensions.get('window');
-
-  const baseWidth = 375;
-  const baseHeight = 812;
-  const basePixelRatio = 2;
-
-  const responsiveWidth = (size * width) / baseWidth;
-  const responsiveHeight = (size * height) / baseHeight;
-  const responsiveSize =
-    (responsiveWidth + responsiveHeight) / 2 / basePixelRatio;
-
-  return responsiveSize;
-};
-
 const HomeScreen: React.FC<Props> = ({navigation}) => {
   const [cep, setCep] = useState('');
   const [loading, setLoading] = useState(false);
   const [erroempty, setErroEmpty] = useState<string | undefined>();
   const [resultado, setResultado] = useState<ResultadoType | null>(null);
   const [erro, setErro] = useState('');
-  const [lastSearchedCep, setLastSearchedCep] = useState('');
 
   const handleSearch = () => {
     setLoading(true);
@@ -103,7 +85,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       behavior={Platform.OS === 'android' ? 'height' : 'padding'}
       keyboardVerticalOffset={0}>
       <View style={styles.container}>
-        <Header/>
+        <Header />
         <TextInput
           style={styles.containerInput}
           onChangeText={handleInputChange}
@@ -119,17 +101,13 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
           disabled={isSearchDisabled}
           onPress={handleSearch}
           style={styles.button}>
-          <Text style={{color: '#fff'}}>Pesquisar</Text>
+          <Text style={styles.textInfo}>
+            Pesquisar
+          </Text>
         </TouchableOpacity>
         <View>
-          <Text style={{textAlign: 'center', color: 'red', fontSize: 16}}>
-            {erroempty ? erroempty : ''}
-          </Text>
-          {erro ? (
-            <Text style={{textAlign: 'center', color: 'red', fontSize: 16}}>
-              {erro}
-            </Text>
-          ) : null}
+          <Text style={styles.textInfo}>{erroempty ? erroempty : ''}</Text>
+          {erro ? <Text style={styles.text}>{erro}</Text> : null}
           {loading ? (
             <ActivityIndicator />
           ) : resultado !== null && typeof resultado === 'object' ? (
@@ -164,16 +142,17 @@ const styles = StyleSheet.create({
     height: '8%',
     marginTop: 30,
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: 16,
+    borderColor: '#00BFFF',
+    fontSize: 20,
   },
   text: {
-    color: '#000',
-    fontSize: 16,
+    color: 'red',
+    fontSize: 14,
     fontWeight: '600',
-    marginLeft: 20,
+    textAlign: 'center',
   },
   button: {
     width: '90%',
@@ -182,10 +161,17 @@ const styles = StyleSheet.create({
     marginTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#00BFFF',
+    borderColor: '#00BFFF',
     borderRadius: 20,
     borderWidth: 1,
   },
+  textInfo:{
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+  }
 });
 
 export default HomeScreen;

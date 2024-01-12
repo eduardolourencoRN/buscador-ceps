@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#000',
     marginTop:6,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '800',
     textAlign:'left'
   },
