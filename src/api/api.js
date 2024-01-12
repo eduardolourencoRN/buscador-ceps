@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const fetchUserData = async (cep) => {
   try {
-    const response = await api.get(`/api/cep/v1/${cep}`);
+    const response = await api.get(`/api/cep/v2/${cep}`);
     return response.data;
     console.log(response)
   } catch (error) {

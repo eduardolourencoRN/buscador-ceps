@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import {fetchUserData} from './api/api';
+import {fetchUserData} from '../api/api';
 import DetailsScreen from './details';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Header from './components/header'
 
 type RootStackParamList = {
   Home: undefined;
@@ -102,6 +103,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       behavior={Platform.OS === 'android' ? 'height' : 'padding'}
       keyboardVerticalOffset={0}>
       <View style={styles.container}>
+        <Header/>
         <TextInput
           style={styles.containerInput}
           onChangeText={handleInputChange}
