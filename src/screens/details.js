@@ -2,46 +2,50 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 function DetailsSearch(props) {
-  const {cidade, bairro, estado, rua} = props
+  const {city, neighborhood, state, street} = props;
   return (
     <View style={styles.containerDetails}>
-       <Text style={styles.text}>Rua: <Text style={styles.texttwo}>{rua}</Text> </Text>
-          <Text style={styles.text}>Cidade: <Text style={styles.texttwo}>{cidade}</Text> </Text>
-          <Text style={styles.text}>Bairro: <Text style={styles.texttwo}>{bairro}</Text> </Text>
-          <Text style={styles.text}>Estado: <Text style={styles.texttwo}>{estado}</Text> </Text>
-         
-        </View>
+      <Text style={styles.text}>
+        Rua: <Text style={styles.texttwo}>{street}</Text>{' '}
+      </Text>
+      <Text style={styles.text}>
+        Cidade: <Text style={styles.texttwo}>{city}</Text>{' '}
+      </Text>
+      <Text style={styles.text}>
+        Bairro: <Text style={styles.texttwo}>{neighborhood}</Text>{' '}
+      </Text>
+      <Text style={styles.text}>
+        Estado: <Text style={styles.texttwo}>{state}</Text>{' '}
+      </Text>
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   containerDetails: {
     width: '90%',
-    height:'20%',
+    height: '20%',
     backgroundColor: '#fff',
-    justifyContent:'center',
+    justifyContent: 'center',
     gap: 30,
-    flexWrap:'wrap',
+    flexWrap: 'wrap',
     borderRadius: 20,
     marginLeft: 15,
-    flexDirection:'row'
+    flexDirection: 'row',
   },
   text: {
     color: '#000',
-    marginTop:6,
+    marginTop: 6,
     fontSize: 18,
     fontWeight: '800',
-    textAlign:'left'
+    textAlign: 'left',
   },
-  texttwo:
-  {
+  texttwo: {
     color: '#00BFFF',
     fontSize: 16,
     fontWeight: '600',
-    textDecorationLine:'underline'
-  }
+    textDecorationLine: 'underline',
+  },
 });
-
 
 export default DetailsSearch;
